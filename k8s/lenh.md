@@ -60,3 +60,33 @@ helm install nginx-ingress \
     --create-namespace \
     --values /home/ubuntu/nginx-ingress.yaml
 ```
+
+lệnh theo dõi
+```bash
+watch kubectl top pod
+watch kubectl top node
+```
+
+SSH tunnel lệnh tạo cổng trung gian
+```bash
+ssh -i devops.pem \
+  -N \
+  -L 16443:127.0.0.1:6443 \
+  ubuntu@13.251.59.204
+
+-N No remote command: không mở giao diện gõ CLI
+-L local port forward
+```
+
+## Auto Scaling Node (VPS)
+- Tạo AMI: bản snapshot các phần mềm cài sẵn (k8s/common.sh)
+- Tạo Template: bản lưu setting khi launch instant nối thêm AMI
+=> Bản Template đẩy đủ
+
+- Tạo Policy
+https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md#iam-policy
+
+- Tạo Role
+=> gắn Policy-Role vào control plane
+
+- ASG Auto Scale Group
