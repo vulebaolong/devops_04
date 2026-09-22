@@ -1,5 +1,11 @@
 ```bash
+docker build -t backend_img .
+docker run --name backend --hostname backend1 -d -p 80808:8080 backend_img
+docker run --name backend --hostname backend2 -d -p 80808:8080 backend_img
+docker run --name backend --hostname backend3 -d -p 80808:8080 backend_img
+
+
 for i in {1..100}; do
-    curl -s https://load-balancer.vulebaolong.com/slow
+    curl -s https://load-balancer.vulebaolong.com
 done
 ```
