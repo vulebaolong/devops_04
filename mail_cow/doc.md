@@ -13,6 +13,11 @@ cd mailcow-dockerized
 
 ./generate_config.sh
 
-Mail server hostname ... hostname: mail.vulebaolong.com
-Timezone [Etc/UTC]: Asia/Ho_Chi_Minh
+# Mail server hostname ... hostname: mail.vulebaolong.com
+# Timezone [Etc/UTC]: Asia/Ho_Chi_Minh
+# Branches: 1
+
+# cd /opt/mailcow-dockerized
+docker compose pull
+docker compose up -d
 ```
