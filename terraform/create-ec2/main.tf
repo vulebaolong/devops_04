@@ -14,6 +14,8 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "app_server" {
+  count = 2
+
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.small"
   key_name = "devops"
@@ -23,7 +25,7 @@ resource "aws_instance" "app_server" {
   ]
 
   tags = {
-    Name = "terraform-ec2-update"
+    Name = "terraform-ec2-${count.index + 1}"
   }
 }
 
@@ -58,5 +60,5 @@ resource "aws_security_group" "terraform_sg" {
 }
 
 output "public_ip" {
-  value = aws_instance.app_server.public_ip
+  value = aws_instance.app_server[*].public_ip
 }
